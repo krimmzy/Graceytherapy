@@ -107,6 +107,63 @@
     <p class="note">NOTE: If you’ve never tried the milking table, you have to experience it—it’s next-level pleasure. (40+ only)</p>
   </section>
 
+  <section id="book" class="booking-section">
+  <h2>Request a Session</h2>
+  <form class="booking-form" action="https://formsubmit.co/Onisgrace7@gmail.com" method="POST">
+    <label>What time would you like to book for?</label>
+    <input type="time" name="booking_time" required>
+
+    <label>Incall or Outcall?</label>
+    <select name="location_type" required>
+      <option value="">Select one</option>
+      <option value="incall">Incall</option>
+      <option value="outcall">Outcall</option>
+    </select>
+
+    <label>Massage type:</label>
+    <select name="massage_type" required>
+      <option value="">Select one</option>
+      <option value="massage_only">Massage Only</option>
+      <option value="happy_ending">Massage with Happy Ending</option>
+    </select>
+
+    <label>Client location:</label>
+    <input type="text" name="client_location" placeholder="City / Area" required>
+
+    <label>Preferred name you'd like to be called:</label>
+    <input type="text" name="preferred_name" required>
+
+    <label>If outcall, where should we meet?</label>
+    <input type="text" name="meeting_point" placeholder="Hotel, home, etc.">
+
+    <label>Are you affiliated with any law enforcement?</label>
+    <select name="law_enforcement" required>
+      <option value="">Select one</option>
+      <option value="no">No</option>
+      <option value="yes">Yes</option>
+    </select>
+
+    <label>Any transmittable disease or condition?</label>
+    <select name="disease" required>
+      <option value="">Select one</option>
+      <option value="no">No</option>
+      <option value="yes">Yes</option>
+    </select>
+
+    <label>Preferred Payment Method:</label>
+    <select name="payment_method" required>
+      <option value="">Select one</option>
+      <option value="gift_card">Gift Card</option>
+      <option value="venmo">Venmo</option>
+      <option value="cash_app">Cash App</option>
+      <option value="btc">Bitcoin (BTC)</option>
+    </select>
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="text" id="hiddenText" value="">
+    <button type="submit">Submit Request</button>
+  </form>
+  </section>
+
   <!-- Contact / Book Now Section -->
   <section id="contact" class="contact">
     <h2>Book Now / Message Me</h2>
