@@ -2,109 +2,109 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Booking Submitted</title>
+  <title>Booking Confirmation</title>
   <style>
     body {
+      background: linear-gradient(to bottom right, #f4e2d8, #ba5370);
       font-family: 'Segoe UI', sans-serif;
-      background: #fef8f5;
-      color: #333;
-      padding: 40px;
       text-align: center;
+      color: #333;
+      padding: 60px 20px;
     }
-    .success-box {
-      background: #fff;
-      border: 1px solid #ccc;
+
+    h2 {
+      font-size: 2.5rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .booking-box {
+      background-color: white;
       border-radius: 10px;
       padding: 30px;
       max-width: 600px;
-      margin: auto;
+      margin: 0 auto;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     }
-    .booking-id {
-      font-weight: bold;
-      font-size: 18px;
-      margin-top: 10px;
-      color: #b85d5d;
+
+    pre {
+      background: #f5f5f5;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: left;
+      white-space: pre-wrap;
+      word-wrap: break-word;
     }
-    textarea {
-      width: 100%;
-      height: 180px;
-      margin-top: 20px;
-      padding: 10px;
-      resize: none;
-    }
+
     button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      cursor: pointer;
-      background: #b85d5d;
+      margin-top: 15px;
+      background-color: #ba5370;
       color: #fff;
       border: none;
-      border-radius: 5px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
     }
-    .social-buttons a {
-      display: inline-block;
-      margin: 10px 8px;
+
+    button:hover {
+      background-color: #a73e5e;
+    }
+
+    .social-links {
+      margin-top: 25px;
+    }
+
+    .social-links a {
       text-decoration: none;
+      margin: 0 10px;
       color: #fff;
-      background: #444;
-      padding: 10px 20px;
-      border-radius: 5px;
+      background: #333;
+      padding: 10px 16px;
+      border-radius: 6px;
+      display: inline-block;
     }
-    .whatsapp { background: #25D366; }
-    .telegram { background: #0088cc; }
-    .signal { background: #3a76f0; }
-    .zangi { background: #3c2a4d; }
+
+    .social-links a:hover {
+      background: #555;
+    }
   </style>
-</head>
-<body>
-  <div class="success-box">
-    <h2>Your Information Has Been Submitted Successfully!</h2>
-    <p class="booking-id">Booking ID: <span id="bookingId"></span></p>
-    
-    <textarea id="bookingInfo" readonly>
-Your session request has been received.
-Booking ID: [loading...]
-
-Please copy this information and forward it to Gracey via your preferred app.
-    </textarea>
-
-    <button onclick="copyInfo()">Copy Info</button>
-
-    <div class="social-buttons">
-      <a class="whatsapp" href="https://wa.me/19282019545" target="_blank">WhatsApp</a>
-      <a class="telegram" href="https://t.me/Graceytherapy" target="_blank">Telegram</a>
-      <a class="signal" href="#" onclick="alert('Please message Gracey on Signal: +1 (928) 201-9545')">Signal</a>
-      <a class="zangi" href="#" onclick="alert('Zangi ID: 10-8926-7524')">Zangi</a>
-    </div>
-  </div>
-
   <script>
-    const id = localStorage.getItem("bookingId");
-    document.getElementById("bookingId").innerText = id;
-    const text = `
-Your session request has been received.
+    function getBookingId() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('booking_id') || 'Not available';
+    }
 
-Booking ID: ${id}
-
-Please copy this info and forward it to Gracey via:
-- WhatsApp: +1 (928) 201-9545
-- Signal: +1 (928) 201-9545
-- Zangi: 10-8926-7524
-- Telegram: @Graceytherapy
-
-Thank you for your discretion.
-    `.trim();
-    document.getElementById("bookingInfo").value = text;
-
-    function copyInfo() {
+    function copyBookingDetails() {
+      const text = document.getElementById("bookingText").innerText;
       navigator.clipboard.writeText(text);
       alert("Booking details copied!");
     }
-  document.querySelector(".booking-form").addEventListener("submit", function () {
-    setTimeout(() => {
-      window.location.https://graceytherapy.vercel.app/thank-you.html";
-    }, 1000); // give FormSubmit a second to process
-  });
+
+    window.onload = () => {
+      const bookingId = getBookingId();
+      const content = `Your booking was successful!
+
+Booking ID: ${bookingId}
+
+You can forward this info to any of the socials below.`;
+      document.getElementById("bookingText").innerText = content;
+    };
   </script>
+</head>
+<body>
+  <div class="booking-box">
+    <h2>Thank You!</h2>
+    <pre id="bookingText"></pre>
+    <button onclick="copyBookingDetails()">Copy Info</button>
+
+    <div class="social-links">
+      <p>Forward to:</p>
+      <a href="https://wa.me/1234567890" target="_blank">WhatsApp</a>
+      <a href="https://t.me/yourtelegram" target="_blank">Telegram</a>
+      <a href="https://signal.me/#p/yourcontact" target="_blank">Signal</a>
+      <a href="https://zangi.com" target="_blank">Zangi</a>
+    </div>
+  </div>
 </body>
-  </html>
+</html>
