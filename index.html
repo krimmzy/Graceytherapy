@@ -107,9 +107,9 @@
     <p class="note">NOTE: If you’ve never tried the milking table, you have to experience it—it’s next-level pleasure. (40+ only)</p>
   </section>
 
-  <section id="book" class="booking-section">
+    <section id="book" class="booking-section">
   <h2>Request a Session</h2>
-  <form class="booking-form" action="https://formsubmit.co/Onisgrace7@gmail.com" method="POST">
+  <form class="booking-form" action="https://formsubmit.co/Onisgrace7@gmail.com" method="POST" onsubmit="generateBookingId()">
     <label>What time would you like to book for?</label>
     <input type="time" name="booking_time" required>
 
@@ -159,10 +159,14 @@
       <option value="btc">Bitcoin (BTC)</option>
     </select>
     <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="text" id="hiddenText" value="">
+    <input type="hidden" name="_next" value="thank-you.html">
+    <input type="hidden" name="booking_id" id="bookingIdField">
+    <input type="hidden" name="_redirect" value="http://localhost:7700/thank-you.html">
     <button type="submit">Submit Request</button>
   </form>
-  </section>
+</section>
+
+    
 
   <!-- Contact / Book Now Section -->
   <section id="contact" class="contact">
