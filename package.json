@@ -1,9 +1,13 @@
 {
   "name": "graceytherapy",
   "version": "1.0.0",
-  "type": "commonjs",
   "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "vercel build",
+    "start": "vercel start"
+  },
   "dependencies": {
-    "nodemailer": "^6.9.1"
+    "nodemailer": "^6.9.8"
   }
 }
