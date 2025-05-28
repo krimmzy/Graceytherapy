@@ -1,36 +1,30 @@
-const nodemailer = require('nodemailer');
+import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).send("Method Not Allowed");
   }
 
-  const {
-    booking_time,
-    location_type,
-    massage_type,
-    client_location,
-    preferred_name,
-    meeting_point,
-    law_enforcement,
-    disease,
-    payment_method
-  } = req.body;
+  let body = '';
+  for await (const chunk of req) {
+    body += chunk;
+  }
 
+  const params = new URLSearchParams(body);
   const bookingId = 'GTY-' + Math.floor(100000 + Math.random() * 900000);
 
   const emailBody = `
 Booking ID: ${bookingId}
-Time: ${booking_time}
-In/Outcall: ${location_type}
-Massage Type: ${massage_type}
-Client Location: ${client_location}
-Preferred Name: ${preferred_name}
-Meeting Point: ${meeting_point}
-Law Enforcement Affiliation: ${law_enforcement}
-Disease: ${disease}
-Payment Method: ${payment_method}
-  `;
+Time: ${params.get('booking_time')}
+In/Outcall: ${params.get('location_type')}
+Massage Type: ${params.get('massage_type')}
+Client Location: ${params.get('client_location')}
+Preferred Name: ${params.get('preferred_name')}
+Meeting Point: ${params.get('meeting_point')}
+Law Enforcement Affiliation: ${params.get('law_enforcement')}
+Disease: ${params.get('disease')}
+Payment Method: ${params.get('payment_method')}
+`;
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -54,4 +48,4 @@ Payment Method: ${payment_method}
   } catch (error) {
     res.status(500).send("Failed to send email: " + error.message);
   }
-      }
+                  }
